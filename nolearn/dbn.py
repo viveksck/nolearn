@@ -48,6 +48,8 @@ class DBN(BaseEstimator):
         random_state=None,
 
         verbose=0,
+        max_norm=-1,
+        noises=[]
         ):
         """
         Many parameters such as `learn_rates`, `dropouts` etc. will
@@ -225,6 +227,8 @@ class DBN(BaseEstimator):
         self.fine_tune_callback = fine_tune_callback
         self.random_state = random_state
         self.verbose = verbose
+        self.max_norm = max_norm
+        self.noises = noises
 
     def _fill_missing_layer_sizes(self, X, y):
         layer_sizes = self.layer_sizes
@@ -257,6 +261,8 @@ class DBN(BaseEstimator):
             self.real_valued_vis,
             self.use_re_lu,
             v(self.uniforms),
+            max_norm = self.max_norm,
+            noises = self.noises
             )
 
         return net
