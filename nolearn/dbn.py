@@ -49,7 +49,8 @@ class DBN(BaseEstimator):
 
         verbose=0,
         max_norm=-1,
-        noises=[]
+        noises=[],
+        enable_noise_epoch = 0,
         ):
         """
         Many parameters such as `learn_rates`, `dropouts` etc. will
@@ -229,6 +230,7 @@ class DBN(BaseEstimator):
         self.verbose = verbose
         self.max_norm = max_norm
         self.noises = noises
+        self.enable_noise_epoch = enable_noise_epoch
 
     def _fill_missing_layer_sizes(self, X, y):
         layer_sizes = self.layer_sizes
@@ -262,7 +264,8 @@ class DBN(BaseEstimator):
             self.use_re_lu,
             v(self.uniforms),
             max_norm = self.max_norm,
-            noises = self.noises
+            noises = self.noises,
+            enable_noise_epoch = self.enable_noise_epoch
             )
 
         return net
